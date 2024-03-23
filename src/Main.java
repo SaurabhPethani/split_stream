@@ -4,22 +4,26 @@ import java.util.List;
 public class Main {
 
     public static List<Range> splitStream(List<Integer> stream) {
-        int countZero = 0, startIndex=-1, endIndex=-1, items = -1;
+        int countZero = 0, startIndex=-1, endIndex=-1;
+        // capture (window/subset of elements) enclosed with these many number of leading & trailing zeros
+        int splitAfterZeros = 4;
         List<Range> ranges = new ArrayList<>();
 
         for (int i=0; i<stream.size(); i++) {
             Integer val = stream.get(i);
             if(val == 0 ) {
                 countZero++;
-                if(startIndex != -1 && countZero == 4) {
-                    i -= 4;
-                    ranges.add(new Range(startIndex, i, items));
+                if(startIndex != -1 && countZero == splitAfterZeros) {
+                    // reset index variable to i-4
+                    // so new iteration will get start from (endIndex + 1)
+                    i -= splitAfterZeros;
+                    ranges.add(new Range(startIndex, i));
                     startIndex = -1;
                 }
             } else if(val >= 0 ) {
-                if(countZero >= 4) {
+                if(countZero >= splitAfterZeros) {
                     startIndex = i;
-                } else if(countZero < 4 && countZero != 0) {
+                } else if( countZero != 0) {
                     startIndex = -1;
                 }
                 countZero = 0;

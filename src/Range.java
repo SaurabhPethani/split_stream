@@ -5,7 +5,7 @@ public class Range {
 
     int numberOfItems;
 
-    public Range(int startIndex, int endIndex, int numberOfItems) {
+    public Range(int startIndex, int endIndex) {
         this.startIndex = startIndex;
         this.endIndex = endIndex;
         this.numberOfItems = (endIndex - startIndex)+1;
