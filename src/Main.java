@@ -4,7 +4,7 @@ import java.util.List;
 public class Main {
 
     public static List<Range> splitStream(List<Integer> stream) {
-        int countZero = 0, startIndex=-1, endIndex=-1;
+        int countZero = 0, startIndex=-1;
         // capture (window/subset of elements) enclosed with these many number of leading & trailing zeros
         int splitAfterZeros = 4;
         List<Range> ranges = new ArrayList<>();
